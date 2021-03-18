@@ -1,0 +1,117 @@
+package com.cloud;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+
+
+@SpringBootTest
+@RunWith(SpringRunner.class)
+public class LambdaTest {
+
+    @Test
+    public void testDate(){
+
+
+    }
+    //Predicate<T> 断言型接口(有一个参数,返回值为波尔类型)		boolean test(T t);
+    @Test
+    public void testLam10(){
+        List<String> list = Arrays.asList("Hello","world","MY","NAME","IS","MOTI");
+        List<String> result = filterStr(list, (str) -> {
+            return str.equals("Hello") || str.equals("world");
+        });
+        result.forEach(System.out::println);
+    }
+    public List<String> filterStr(List<String> list, Predicate<String> pre){
+        List<String> resultList = new ArrayList<>();
+        for (String s : list) {
+            if (pre.test(s)){
+                resultList.add(s);
+            }
+        }
+        return resultList;
+    }
+
+    @Test
+    public void testLam9(){
+        String result  = strHandler("nihao", (str) -> {
+            return str += ",dejf";
+        });
+        System.out.println(result);
+    }
+    //Function<T,R> 函数型接口(有一个参数,有返回值)		R apply(T t);
+    public String strHandler(String str , Function<String,String> fun){
+        String apply = fun.apply(str);
+        return apply;
+    }
+    //Supplier<T> 供给型接口(无参数,但是有返回值)		T get();
+    @Test
+    public void testLam8(){
+        List<Integer> integers = getRandomNum(20, () -> (int) (Math.random() * 100));
+        integers.forEach(System.out::println);
+    }
+    public List<Integer> getRandomNum(int num , Supplier<Integer> sup){
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 0; i < num; i++) {
+            list.add(sup.get());
+        }
+        return list;
+    }
+    //Consumer<T> 消费型接口(有一个参数,但是无返回值)		void accept(T t);
+    @Test
+    public void testLam7(){
+        happy(2000,(money)-> System.out.println(money));
+    }
+    public void happy(double money,Consumer<Double> consumer){
+        consumer.accept(money);
+    }
+    @Test
+    public void testLam6(){
+        //lambda表达式的参数列表数据类型可以不写,jvm自动推断(推荐不写)
+       Comparator<Integer> com = (Integer x,Integer y)->Integer.compare(x,y);
+        System.out.println(com.compare(11,12));
+    }
+    @Test
+    public void testLam5(){
+        //若有多个参数并且有返回值,只有一条语句(return 和大括号都可以省略)
+       Comparator<Integer> com = (x,y)->Integer.compare(x,y);
+        System.out.println(com.compare(12,11));
+    }
+
+    @Test
+    public void testLam4(){
+        //若有多个参数,并且lambda体中有多个语句,并且有返回值
+        Comparator<Integer> com = (x,y)->{
+            System.out.println("有多个参数 , 并且lambda体有多个语句, 必须使用大括号");
+            return Integer.compare(x,y);
+        };
+        System.out.println(com.compare(12,15));
+    }
+
+    @Test
+    public void testLam3(){
+      //若只有一个参数则参数的小括号可以不写,(推荐还是写上)
+        Consumer<String> consumer = x-> System.out.println(x);
+        consumer.accept("hello");
+    }
+    @Test
+    public void testLam2(){
+        //有一个参数,无返回值
+        Consumer<String> consumer = (x)-> System.out.println(x);
+        consumer.accept("OK");
+    }
+    @Test
+    public void testLam1(){
+        //无参数   无返回值
+        Runnable r1 = () -> System.out.println("Hello Lambda");
+        r1.run();
+    }
+}

@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.*;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.*;
@@ -34,6 +35,12 @@ public class TestRedisTemplate {
 
     private Logger logger = LoggerFactory.getLogger(TestRedisTemplate.class);
 
+
+    @Test
+    @Scheduled(cron = " 0 0 0 * * ? ")
+    public void testSchedule(){
+
+    }
 
     public static void main(String[] args) {
         uploadFileToNfs();
