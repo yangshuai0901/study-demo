@@ -1,10 +1,12 @@
 package com.cloud;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -16,10 +18,44 @@ import java.util.function.Supplier;
 @RunWith(SpringRunner.class)
 public class LambdaTest {
 
+
+
     @Test
-    public void testDate(){
+    public void testLa1(){
+        Consumer<String> consumer = new Consumer<String>(){
+            @Override
+            public void accept(String s) {
+                System.out.println(s);
+            }
+        };
+        consumer.accept("lambda");
+    }
 
-
+    @Test
+    public void testDate() throws Exception {
+    String s = "{\"lastSubmitTime\":1614823329000,\"failedNos\":[\"R000021030120\",\"R000021030130\",\"R000021030124\",\"R000021030123\",\"R000021030122\",\"R000021030121\"]}";
+        ObjectMapper mapper = new ObjectMapper();
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap = mapper.readValue(s,HashMap.class);
+        Object failedNos = hashMap.get("failedNos");
+        System.out.println(failedNos);
+//        Set<Map.Entry<String, Object>> entries = hashMap.entrySet();
+//        Iterator<Map.Entry<String, Object>> iterator = entries.iterator();
+//        while (iterator.hasNext()){
+//            Map.Entry<String, Object> entry = iterator.next();
+//            System.out.println(entry.getKey());
+//            System.out.println(entry.getValue());
+//        }
+//        Set<String> strings = hashMap.keySet();
+//        for (String string : strings) {
+//            Object o = hashMap.get(string);
+//            System.out.println(o);
+//        }
+//        Set<Map.Entry<String, Object>> entries = hashMap.entrySet();
+//        for (Map.Entry<String, Object> entry : entries) {
+//            System.out.println(entry.getKey());
+//            System.out.println(entry.getValue());
+//        }
     }
     //Predicate<T> 断言型接口(有一个参数,返回值为波尔类型)		boolean test(T t);
     @Test
