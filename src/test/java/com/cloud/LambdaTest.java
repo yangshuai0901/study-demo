@@ -1,5 +1,6 @@
 package com.cloud;
 
+import com.cloud.confid.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,16 +20,57 @@ import java.util.function.Supplier;
 public class LambdaTest {
 
 
+    @Test
+    public void testStringFormat(){
 
+    }
+
+    // 类 静态方法名
+    @Test
+    public void testLa2(){
+//        Comparator<Integer> com = new Comparator<Integer>() {
+//            @Override
+//            public int compare(Integer o1, Integer o2) {
+//                return Integer.compare(o1,o2);
+//            }
+//        };
+//        System.out.println( com.compare(12,13));
+        //lambda 表达式方法
+       /* Comparator<Integer> com = (x,y)-> {return Integer.compare(x,y);};
+        System.out.println( com.compare(12,13));*/
+        // 方法引用方式
+        Comparator<Integer> com = Integer::compare;
+        System.out.println(com.compare(12,13));
+    }
+    //对象  实例方法名
     @Test
     public void testLa1(){
-        Consumer<String> consumer = new Consumer<String>(){
+        User user = new User();
+        user.setUsername("zhangsan");
+        Supplier<String> supplier = user::getUsername;
+        System.out.println(supplier.get());
+      /*  Supplier<String> supplier = ()-> user.getUsername();
+        System.out.println(supplier.get());*/
+//        Supplier<String> supplier =()->{return user.getUsername();};
+////        System.out.println(supplier.get());
+        /*Supplier<String> supplier = new Supplier<String>(){
             @Override
-            public void accept(String s) {
-                System.out.println(s);
+            public String get() {
+                return user.getUsername();
             }
         };
-        consumer.accept("lambda");
+        System.out.println(supplier.get());*/
+//        Consumer<String> consumer = new Consumer<String>(){
+//            @Override
+//            public void accept(String s) {
+//                System.out.println(s);
+//            }
+//        };
+//        consumer.accept("lambda");
+       /* Consumer<String> con = (s)-> System.out.println(s);
+        con.accept("lambda");*/
+      /* Consumer<String> con = System.out::println;
+       con.accept("lambda");*/
     }
 
     @Test
