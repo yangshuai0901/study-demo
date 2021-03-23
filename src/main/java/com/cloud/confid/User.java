@@ -13,7 +13,9 @@ public class User implements Serializable {
         this.username = username;
         this.age = age;
     }
-
+    public User( String username) {
+        this.username = username;
+    }
     public User() {
     }
 
