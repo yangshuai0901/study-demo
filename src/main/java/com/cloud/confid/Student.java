@@ -1,8 +1,10 @@
 package com.cloud.confid;
 
+import lombok.Data;
+
 import java.math.BigDecimal;
 
-
+@Data
 public class Student {
     //姓名
     private String name;
