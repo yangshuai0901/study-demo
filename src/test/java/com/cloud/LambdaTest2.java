@@ -1,6 +1,6 @@
 package com.cloud;
 
-import com.cloud.confid.interfaces.Human;
+import com.cloud.config.Teacher;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

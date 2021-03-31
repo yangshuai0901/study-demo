@@ -1,6 +1,6 @@
 package com.cloud;
 
-import com.cloud.confid.Student;
+import com.cloud.config.Student;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,7 +9,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 
 @RunWith(SpringRunner.class)
@@ -18,7 +17,7 @@ public class StreamTest {
 
     //flatMap(T -> Stream<R>)
     @Test
-    public void testSt7(){
+    public void testSt7()  {
 
     }
 

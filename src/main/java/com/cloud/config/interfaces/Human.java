@@ -1,4 +1,4 @@
-package com.cloud.confid.interfaces;
+package com.cloud.config.interfaces;
 
 @FunctionalInterface
 public interface Human {

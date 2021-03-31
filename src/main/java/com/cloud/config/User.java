@@ -1,4 +1,4 @@
-package com.cloud.confid;
+package com.cloud.config;
 
 import java.io.Serializable;
 
