@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: nacos-demo
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+        namespace: 767f8dd3-d25c-4725-8761-91d23bba5a3c
+        group: group-test
+        file-extension: yml
+        refresh-enabled: true
+        prefix: test
